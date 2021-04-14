@@ -1,8 +1,9 @@
 {
   "name": "houdoku-extension-lib",
   "description": "Extension interface for Houdoku, a manga reader for the desktop",
-  "version": "1.0.0",
-  "main": "index.js",
+  "version": "1.0.1",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc"
   },
@@ -27,7 +28,7 @@
   ],
   "homepage": "https://github.com/xgi/houdoku-extension-lib",
   "files": [
-    "lib/**/*"
+    "/dist"
   ],
   "dependencies": {},
   "devDependencies": {
