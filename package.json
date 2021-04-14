@@ -1,0 +1,36 @@
+{
+  "name": "houdoku-extension-lib",
+  "description": "Extension interface for Houdoku, a manga reader for the desktop",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xgi/houdoku-extension-lib.git"
+  },
+  "author": {
+    "name": "Jake Robertson",
+    "email": "jake@faltro.com",
+    "url": "https://faltro.com"
+  },
+  "license": "MIT",
+  "keywords": [
+    "manga",
+    "manga-reader",
+    "comics",
+    "extensions",
+    "plugins",
+    "typescript",
+    "ts"
+  ],
+  "homepage": "https://github.com/xgi/houdoku-extension-lib",
+  "files": [
+    "lib/**/*"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^4.2.4"
+  }
+}
