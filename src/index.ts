@@ -1,3 +1,31 @@
-export * from "./models";
-export * from "./interface";
-export * from "./types";
+export {
+  Series,
+  Chapter,
+  LanguageKey,
+  Language,
+  GenreKey,
+  Genre,
+  ThemeKey,
+  Theme,
+  FormatKey,
+  Format,
+  ContentWarningKey,
+  ContentWarning,
+  SeriesStatus,
+  SeriesSourceType,
+} from "./models";
+
+export {
+  FetchSeriesFunc,
+  ParseSeriesFunc,
+  FetchChaptersFunc,
+  ParseChaptersFunc,
+  FetchPageRequesterDataFunc,
+  ParsePageRequesterDataFunc,
+  GetPageUrlsFunc,
+  GetPageDataFunc,
+  FetchSearchFunc,
+  ParseSearchFunc,
+} from "./interface";
+
+export { ExtensionMetadata, PageRequesterData } from "./types";
