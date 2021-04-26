@@ -2,7 +2,7 @@ export type ExtensionMetadata = {
   id: number;
   name: string;
   url: string;
-  version: number;
+  version: string;
   notice: string;
   noticeUrl: string;
   pageLoadMessage: string;
