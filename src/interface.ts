@@ -1,5 +1,6 @@
 import { Chapter, Series, SeriesSourceType } from "./models";
 import { PageRequesterData } from "./types";
+import { Response } from "node-fetch";
 
 /**
  * Request a series from the content source.
