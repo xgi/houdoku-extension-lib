@@ -1,27 +1,34 @@
 import { Chapter, Series, SeriesSourceType } from "./models";
 import { PageRequesterData } from "./types";
 import { Response } from "node-fetch";
+import { JSDOM } from "jsdom";
 
 /**
  * Request a series from the content source.
  *
  * @param sourceType the source type of the series
  * @param id the id of the series on the content source
+ * @param fetchFn a fetch function, i.e. from node-fetch
  * @returns Promise<Response> to be handled by ParseSeriesFunc
  */
 export interface FetchSeriesFunc {
-  (sourceType: SeriesSourceType, id: string): Promise<Response>;
+  (
+    sourceType: SeriesSourceType,
+    id: string,
+    fetchFn?: (url: string) => Promise<Response>
+  ): Promise<Response>;
 }
 
 /**
  * Parse the response from FetchSeriesFunc
  *
  * @param sourceType the source type of the series
- * @param json the json content of the response
+ * @param data the content of the response (JSON or text)
+ * @param jsdom the JSDOM class from its module
  * @returns the series populated with fields from the content source, if available
  */
 export interface ParseSeriesFunc {
-  (sourceType: SeriesSourceType, json: any): Series;
+  (sourceType: SeriesSourceType, data: any, jsdom: typeof JSDOM): Series;
 }
 
 /**
@@ -29,21 +36,27 @@ export interface ParseSeriesFunc {
  *
  * @param sourceType the source type of the series
  * @param id the id of the series on the content source
+ * @param fetchFn a fetch function, i.e. from node-fetch
  * @returns Promise<Response> to be handled by ParseChaptersFunc
  */
 export interface FetchChaptersFunc {
-  (sourceType: SeriesSourceType, id: string): Promise<Response>;
+  (
+    sourceType: SeriesSourceType,
+    id: string,
+    fetchFn?: (url: string) => Promise<Response>
+  ): Promise<Response>;
 }
 
 /**
  * Parse the response from FetchChaptersFunc
  *
  * @param sourceType the source type of the series
- * @param json the json content of the response
+ * @param data the content of the response (JSON or text)
+ * @param jsdom the JSDOM class from its module
  * @returns a list of chapters for the series, populated with fields from the content source
  */
 export interface ParseChaptersFunc {
-  (sourceType: SeriesSourceType, json: any): Chapter[];
+  (sourceType: SeriesSourceType, data: any, jsdom: typeof JSDOM): Chapter[];
 }
 
 /**
@@ -56,24 +69,27 @@ export interface ParseChaptersFunc {
  * @param sourceType the source type of the series
  * @param seriesSourceId
  * @param chapterSourceId
+ * @param fetchFn a fetch function, i.e. from node-fetch
  * @returns Promise<Response> to be handled by ParsePageRequesterDataFunc
  */
 export interface FetchPageRequesterDataFunc {
   (
     sourceType: SeriesSourceType,
     seriesSourceId: string,
-    chapterSourceId: string
+    chapterSourceId: string,
+    fetchFn?: (url: string) => Promise<Response>
   ): Promise<Response>;
 }
 
 /**
  * Parse the response from FetchPageRequesterDataFunc
  *
- * @param json the json content of the response
+ * @param data the content of the response (JSON or text)
+ * @param jsdom the JSDOM class from its module
  * @returns the PageRequesterData for passing to any GetPageUrlsFunc call for the chapter
  */
 export interface ParsePageRequesterDataFunc {
-  (json: any): PageRequesterData;
+  (data: any, jsdom: typeof JSDOM): PageRequesterData;
 }
 
 /**
@@ -111,18 +127,24 @@ export interface GetPageDataFunc {
  * @param text the user's search content, with any entered search params removed
  * @param params a map of user-specified parameters for searching. These are currently entered in
  * the form "key:value" like "author:oda" but this is not currently well-defined.
+ * @param fetchFn a fetch function, i.e. from node-fetch
  * @returns Promise<Response> to be handled by ParseSearchFunc
  */
 export interface FetchSearchFunc {
-  (text: string, params: { [key: string]: string }): Promise<Response>;
+  (
+    text: string,
+    params: { [key: string]: string },
+    fetchFn?: (url: string) => Promise<Response>
+  ): Promise<Response>;
 }
 
 /**
  * Parse the response from FetchSearchFunc
  *
- * @param json the json content of the response
+ * @param data the content of the response (JSON or text)
+ * @param jsdom the JSDOM class from its module
  * @returns a list of series found from the content source, with fields set as available
  */
 export interface ParseSearchFunc {
-  (json: any): Series[];
+  (data: any, jsdom: typeof JSDOM): Series[];
 }
