@@ -1,7 +1,6 @@
 import { Chapter, Series, SeriesSourceType } from "./models";
 import { PageRequesterData } from "./types";
 import { Response } from "node-fetch";
-import { JSDOM } from "jsdom";
 
 /**
  * Request a series from the content source.
@@ -24,11 +23,11 @@ export interface FetchSeriesFunc {
  *
  * @param sourceType the source type of the series
  * @param data the content of the response (JSON or text)
- * @param jsdom the JSDOM class from its module
+ * @param domParser a TypeScript DOMParser
  * @returns the series populated with fields from the content source, if available
  */
 export interface ParseSeriesFunc {
-  (sourceType: SeriesSourceType, data: any, jsdom: typeof JSDOM): Series;
+  (sourceType: SeriesSourceType, data: any, domParser: DOMParser): Series;
 }
 
 /**
@@ -52,11 +51,11 @@ export interface FetchChaptersFunc {
  *
  * @param sourceType the source type of the series
  * @param data the content of the response (JSON or text)
- * @param jsdom the JSDOM class from its module
+ * @param domParser a TypeScript DOMParser
  * @returns a list of chapters for the series, populated with fields from the content source
  */
 export interface ParseChaptersFunc {
-  (sourceType: SeriesSourceType, data: any, jsdom: typeof JSDOM): Chapter[];
+  (sourceType: SeriesSourceType, data: any, domParser: DOMParser): Chapter[];
 }
 
 /**
@@ -85,11 +84,11 @@ export interface FetchPageRequesterDataFunc {
  * Parse the response from FetchPageRequesterDataFunc
  *
  * @param data the content of the response (JSON or text)
- * @param jsdom the JSDOM class from its module
+ * @param domParser a TypeScript DOMParser
  * @returns the PageRequesterData for passing to any GetPageUrlsFunc call for the chapter
  */
 export interface ParsePageRequesterDataFunc {
-  (data: any, jsdom: typeof JSDOM): PageRequesterData;
+  (data: any, domParser: DOMParser): PageRequesterData;
 }
 
 /**
@@ -142,9 +141,9 @@ export interface FetchSearchFunc {
  * Parse the response from FetchSearchFunc
  *
  * @param data the content of the response (JSON or text)
- * @param jsdom the JSDOM class from its module
+ * @param domParser a TypeScript DOMParser
  * @returns a list of series found from the content source, with fields set as available
  */
 export interface ParseSearchFunc {
-  (data: any, jsdom: typeof JSDOM): Series[];
+  (data: any, domParser: DOMParser): Series[];
 }
