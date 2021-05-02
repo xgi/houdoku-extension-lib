@@ -15,7 +15,7 @@ export interface FetchSeriesFunc {
   (
     sourceType: SeriesSourceType,
     id: string,
-    fetchFn?: (url: string) => Promise<Response>
+    fetchFn: (url: string) => Promise<Response>
   ): Promise<Response>;
 }
 
@@ -43,7 +43,7 @@ export interface FetchChaptersFunc {
   (
     sourceType: SeriesSourceType,
     id: string,
-    fetchFn?: (url: string) => Promise<Response>
+    fetchFn: (url: string) => Promise<Response>
   ): Promise<Response>;
 }
 
@@ -77,7 +77,7 @@ export interface FetchPageRequesterDataFunc {
     sourceType: SeriesSourceType,
     seriesSourceId: string,
     chapterSourceId: string,
-    fetchFn?: (url: string) => Promise<Response>
+    fetchFn: (url: string) => Promise<Response>
   ): Promise<Response>;
 }
 
@@ -134,7 +134,7 @@ export interface FetchSearchFunc {
   (
     text: string,
     params: { [key: string]: string },
-    fetchFn?: (url: string) => Promise<Response>
+    fetchFn: (url: string) => Promise<Response>
   ): Promise<Response>;
 }
 
