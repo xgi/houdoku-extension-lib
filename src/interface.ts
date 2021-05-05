@@ -1,6 +1,7 @@
 import { Chapter, Series, SeriesSourceType } from "./models";
 import { PageRequesterData } from "./types";
 import { Response } from "node-fetch";
+import { IpcRenderer } from "electron";
 
 /**
  * Request a series from the content source.
@@ -69,6 +70,7 @@ export interface ParseChaptersFunc {
  * @param seriesSourceId
  * @param chapterSourceId
  * @param fetchFn a fetch function, i.e. from node-fetch
+ * @param ipcRenderer the Electron IpcRenderer, used
  * @returns Promise<Response> to be handled by ParsePageRequesterDataFunc
  */
 export interface FetchPageRequesterDataFunc {
@@ -76,7 +78,8 @@ export interface FetchPageRequesterDataFunc {
     sourceType: SeriesSourceType,
     seriesSourceId: string,
     chapterSourceId: string,
-    fetchFn: (url: string) => Promise<Response>
+    fetchFn: (url: string) => Promise<Response>,
+    ipcRenderer: IpcRenderer
   ): Promise<Response>;
 }
 
