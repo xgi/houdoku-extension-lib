@@ -1,5 +1,5 @@
 export type ExtensionMetadata = {
-  id: number;
+  id: string;
   name: string;
   url: string;
   version: string;
