@@ -90,7 +90,7 @@ export interface FetchPageRequesterDataFunc {
  * @returns the PageRequesterData for passing to any GetPageUrlsFunc call for the chapter
  */
 export interface ParsePageRequesterDataFunc {
-  (data: any, domParser: DOMParser): PageRequesterData;
+  (data: any, chapterSourceId: string, domParser: DOMParser): PageRequesterData;
 }
 
 /**
