@@ -78,7 +78,7 @@ export interface FetchPageRequesterDataFunc {
     seriesSourceId: string,
     chapterSourceId: string,
     fetchFn: (url: string) => Promise<Response>,
-    webviewFunc: (url: string) => string
+    webviewFunc: (url: string) => Promise<string>
   ): Promise<any>;
 }
 
