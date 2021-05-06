@@ -1,6 +1,6 @@
 export type Series = {
   id?: number;
-  extensionId: number;
+  extensionId: string;
   sourceId: string;
   sourceType: SeriesSourceType;
   title: string;
