@@ -78,8 +78,8 @@ export interface FetchPageRequesterDataFunc {
     seriesSourceId: string,
     chapterSourceId: string,
     fetchFn: (url: string) => Promise<Response>,
-    ipcRenderer: any
-  ): Promise<Response>;
+    webviewFunc: (url: string) => string
+  ): Promise<any>;
 }
 
 /**
