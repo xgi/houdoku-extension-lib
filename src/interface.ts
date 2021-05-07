@@ -17,7 +17,7 @@ export interface FetchSeriesFunc {
     id: string,
     fetchFn: (url: string) => Promise<Response>,
     webviewFunc: (url: string) => Promise<string>
-  ): Promise<Response>;
+  ): Promise<any>;
 }
 
 /**
@@ -46,7 +46,7 @@ export interface FetchChaptersFunc {
     id: string,
     fetchFn: (url: string) => Promise<Response>,
     webviewFunc: (url: string) => Promise<string>
-  ): Promise<Response>;
+  ): Promise<any>;
 }
 
 /**
@@ -140,7 +140,7 @@ export interface FetchSearchFunc {
     params: { [key: string]: string },
     fetchFn: (url: string) => Promise<Response>,
     webviewFunc: (url: string) => Promise<string>
-  ): Promise<Response>;
+  ): Promise<any>;
 }
 
 /**
