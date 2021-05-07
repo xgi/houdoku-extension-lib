@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@types/dom-parser@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@types/dom-parser/-/dom-parser-0.1.1.tgz#e72d5b2846ce8c2b48b12314c73af458fcbde5df"
+  integrity sha512-/kFdfefUzcrPclXoo86+31GN6Ww/UhzrC4U7eiW/M6mTNOfzgEl8etv7AtmkoelpYDE4EoUAwZIt5x1D693CaA==
+
 "@types/node-fetch@^2.5.10":
   version "2.5.10"
   resolved "https://registry.yarnpkg.com/@types/node-fetch/-/node-fetch-2.5.10.tgz#9b4d4a0425562f9fcea70b12cb3fcdd946ca8132"

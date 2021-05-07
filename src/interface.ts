@@ -1,6 +1,7 @@
 import { Chapter, Series, SeriesSourceType } from "./models";
 import { PageRequesterData } from "./types";
 import { Response } from "node-fetch";
+import DOMParser from "dom-parser";
 
 /**
  * Request a series from the content source.
@@ -14,7 +15,8 @@ export interface FetchSeriesFunc {
   (
     sourceType: SeriesSourceType,
     id: string,
-    fetchFn: (url: string) => Promise<Response>
+    fetchFn: (url: string) => Promise<Response>,
+    webviewFunc: (url: string) => Promise<string>
   ): Promise<Response>;
 }
 
@@ -42,7 +44,8 @@ export interface FetchChaptersFunc {
   (
     sourceType: SeriesSourceType,
     id: string,
-    fetchFn: (url: string) => Promise<Response>
+    fetchFn: (url: string) => Promise<Response>,
+    webviewFunc: (url: string) => Promise<string>
   ): Promise<Response>;
 }
 
@@ -69,7 +72,7 @@ export interface ParseChaptersFunc {
  * @param seriesSourceId
  * @param chapterSourceId
  * @param fetchFn a fetch function, i.e. from node-fetch
- * @param ipcRenderer the Electron IpcRenderer, used primarily for spoofing/Cloudflare-bypass
+ * @param webviewFunc a function to get page data after retrieving it through a webview
  * @returns Promise<Response> to be handled by ParsePageRequesterDataFunc
  */
 export interface FetchPageRequesterDataFunc {
@@ -135,7 +138,8 @@ export interface FetchSearchFunc {
   (
     text: string,
     params: { [key: string]: string },
-    fetchFn: (url: string) => Promise<Response>
+    fetchFn: (url: string) => Promise<Response>,
+    webviewFunc: (url: string) => Promise<string>
   ): Promise<Response>;
 }
 
