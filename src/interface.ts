@@ -26,10 +26,12 @@ export interface FetchSeriesFunc {
  * @param sourceType the source type of the series
  * @param data the content of the response (JSON or text)
  * @param domParser a TypeScript DOMParser
- * @returns the series populated with fields from the content source, if available
+ * @returns the series populated with fields from the content source, or undefined
  */
 export interface ParseSeriesFunc {
-  (sourceType: SeriesSourceType, data: any, domParser: DOMParser): Series;
+  (sourceType: SeriesSourceType, data: any, domParser: DOMParser):
+    | Series
+    | undefined;
 }
 
 /**
