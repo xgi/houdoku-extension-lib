@@ -26,6 +26,8 @@ export {
   GetPageDataFunc,
   FetchSearchFunc,
   ParseSearchFunc,
+  FetchDirectoryFunc,
+  ParseDirectoryFunc,
 } from "./interface";
 
 export { ExtensionMetadata, PageRequesterData } from "./types";
