@@ -164,11 +164,18 @@ export interface FetchSearchFunc {
  * Parse the response from FetchSearchFunc
  *
  * @param data the content of the response (JSON or text)
+ * @param text same text content from FetchSearchFunc
+ * @param params same params content from FetchSearchFunc
  * @param domParser a dom-parser DOMParser
  * @returns a list of series found from the content source, with fields set as available
  */
 export interface ParseSearchFunc {
-  (data: any, domParser: DOMParser): Series[];
+  (
+    data: any,
+    text: string,
+    params: { [key: string]: string },
+    domParser: DOMParser
+  ): Series[];
 }
 
 /**
