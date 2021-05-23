@@ -16,18 +16,13 @@ export {
 } from "./models";
 
 export {
-  FetchSeriesFunc,
-  ParseSeriesFunc,
-  FetchChaptersFunc,
-  ParseChaptersFunc,
-  FetchPageRequesterDataFunc,
-  ParsePageRequesterDataFunc,
+  GetSeriesFunc,
+  GetChaptersFunc,
+  GetPageRequesterDataFunc,
   GetPageUrlsFunc,
   GetPageDataFunc,
-  FetchSearchFunc,
-  ParseSearchFunc,
-  FetchDirectoryFunc,
-  ParseDirectoryFunc,
+  GetSearchFunc,
+  GetDirectoryFunc,
 } from "./interface";
 
 export { ExtensionMetadata, PageRequesterData } from "./types";
