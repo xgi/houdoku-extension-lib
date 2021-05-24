@@ -129,6 +129,7 @@ export enum FormatKey {
 export enum ContentWarningKey {
   ECCHI,
   SMUT,
+  PORNOGRAPHIC,
   GORE,
   SEXUAL_VIOLENCE,
 }

@@ -5,6 +5,10 @@ import { ContentWarning } from "./types";
 export const ContentWarnings: { [key: string]: ContentWarning } = {
   [ContentWarningKey.ECCHI]: { key: ContentWarningKey.ECCHI, name: "Ecchi" },
   [ContentWarningKey.SMUT]: { key: ContentWarningKey.SMUT, name: "Smut" },
+  [ContentWarningKey.PORNOGRAPHIC]: {
+    key: ContentWarningKey.PORNOGRAPHIC,
+    name: "Pornographic",
+  },
   [ContentWarningKey.GORE]: { key: ContentWarningKey.GORE, name: "Gore" },
   [ContentWarningKey.SEXUAL_VIOLENCE]: {
     key: ContentWarningKey.SEXUAL_VIOLENCE,
