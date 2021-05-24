@@ -40,6 +40,7 @@ export type Series = {
   themes: ThemeKey[];
   contentWarnings: ContentWarningKey[];
   formats: FormatKey[];
+  demographic: DemographicKey;
   status: SeriesStatus;
   originalLanguageKey: LanguageKey;
   numberUnread: number;
