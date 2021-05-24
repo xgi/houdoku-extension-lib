@@ -6,6 +6,7 @@ import {
   FormatKey,
   SeriesStatus,
   LanguageKey,
+  DemographicKey,
 } from "./enums";
 
 export type ExtensionMetadata = {
@@ -82,5 +83,10 @@ export type Format = {
 
 export type ContentWarning = {
   key: ContentWarningKey;
+  name: string;
+};
+
+export type Demographic = {
+  key: DemographicKey;
   name: string;
 };

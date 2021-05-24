@@ -133,6 +133,14 @@ export enum ContentWarningKey {
   SEXUAL_VIOLENCE,
 }
 
+export enum DemographicKey {
+  SHOUNEN,
+  SHOUJO,
+  JOSEI,
+  SEINEN,
+  UNCERTAIN,
+}
+
 export enum SeriesStatus {
   ONGOING = "Ongoing",
   COMPLETED = "Completed",

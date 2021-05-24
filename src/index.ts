@@ -6,6 +6,7 @@ export {
   Theme,
   Format,
   ContentWarning,
+  Demographic,
 } from "./types";
 
 export {
@@ -14,11 +15,13 @@ export {
   ThemeKey,
   FormatKey,
   ContentWarningKey,
+  DemographicKey,
   SeriesStatus,
   SeriesSourceType,
 } from "./enums";
 
 export { Languages } from "./languages";
+export { Demographics, demographicKeysFromNames } from "./demographics";
 export { Genres, genreKeysFromNames } from "./genres";
 export { Formats, formatKeysFromNames } from "./formats";
 export { Themes, themeKeysFromNames } from "./themes";
