@@ -1,7 +1,7 @@
-import { Chapter, Series, SeriesSourceType } from "./models";
-import { PageRequesterData } from "./types";
+import { Chapter, PageRequesterData, Series } from "./types";
 import { Response, RequestInfo, RequestInit } from "node-fetch";
 import DOMParser from "dom-parser";
+import { SeriesSourceType } from "./enums";
 
 /**
  * Get a series from the content source.

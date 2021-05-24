@@ -1,37 +1,3 @@
-export type Series = {
-  id?: number;
-  extensionId: string;
-  sourceId: string;
-  sourceType: SeriesSourceType;
-  title: string;
-  altTitles: string[];
-  description: string;
-  authors: string[];
-  artists: string[];
-  genres: GenreKey[];
-  themes: ThemeKey[];
-  contentWarnings: ContentWarningKey[];
-  formats: FormatKey[];
-  status: SeriesStatus;
-  originalLanguageKey: LanguageKey;
-  numberUnread: number;
-  remoteCoverUrl: string;
-  userTags: string[];
-};
-
-export type Chapter = {
-  id?: number;
-  seriesId?: number;
-  sourceId: string;
-  title: string;
-  chapterNumber: string;
-  volumeNumber: string;
-  languageKey: LanguageKey;
-  groupName: string;
-  time: number;
-  read: boolean;
-};
-
 export enum LanguageKey {
   ARABIC,
   BENGALI,
@@ -75,12 +41,6 @@ export enum LanguageKey {
   VIETNAMESE,
 }
 
-export type Language = {
-  key: LanguageKey;
-  name: string;
-  flagCode: string;
-};
-
 export enum GenreKey {
   ACTION,
   ADVENTURE,
@@ -110,11 +70,6 @@ export enum GenreKey {
   THRILLER,
   WUXIA,
 }
-
-export type Genre = {
-  key: GenreKey;
-  name: string;
-};
 
 export enum ThemeKey {
   COOKING,
@@ -156,11 +111,6 @@ export enum ThemeKey {
   VILLAINESS,
 }
 
-export type Theme = {
-  key: ThemeKey;
-  name: string;
-};
-
 export enum FormatKey {
   YONKOMA,
   AWARD_WINNING,
@@ -176,22 +126,12 @@ export enum FormatKey {
   FAN_COLORED,
 }
 
-export type Format = {
-  key: FormatKey;
-  name: string;
-};
-
 export enum ContentWarningKey {
   ECCHI,
   SMUT,
   GORE,
   SEXUAL_VIOLENCE,
 }
-
-export type ContentWarning = {
-  key: ContentWarningKey;
-  name: string;
-};
 
 export enum SeriesStatus {
   ONGOING = "Ongoing",
