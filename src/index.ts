@@ -31,6 +31,7 @@ export {
 } from "./contentwarnings";
 
 export {
+  ExtensionClientAbstract,
   ExtensionClientInterface,
   GetSeriesFunc,
   GetChaptersFunc,
@@ -39,6 +40,8 @@ export {
   GetPageDataFunc,
   GetSearchFunc,
   GetDirectoryFunc,
+  FetchFunc,
+  WebviewFunc,
 } from "./interface";
 
 export { ExtensionMetadata, PageRequesterData } from "./types";

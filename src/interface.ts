@@ -8,22 +8,10 @@ import { SeriesSourceType } from "./enums";
  *
  * @param sourceType the source type of the series
  * @param id the id of the series on the content source
- * @param fetchFn a fetch function, i.e. from node-fetch
- * @param webviewFunc a function to open a URL in a webview/BrowserView (handled by the client)
- * @param domParser a dom-parser DOMParser
  * @returns the series populated with fields from the content source, or undefined
  */
 export interface GetSeriesFunc {
-  (
-    sourceType: SeriesSourceType,
-    id: string,
-    fetchFn: (
-      url: RequestInfo,
-      init?: RequestInit | undefined
-    ) => Promise<Response>,
-    webviewFunc: (url: string) => Promise<string>,
-    domParser: DOMParser
-  ): Promise<Series | undefined>;
+  (sourceType: SeriesSourceType, id: string): Promise<Series | undefined>;
 }
 
 /**
@@ -31,22 +19,10 @@ export interface GetSeriesFunc {
  *
  * @param sourceType the source type of the series
  * @param id the id of the series on the content source
- * @param fetchFn a fetch function, i.e. from node-fetch
- * @param webviewFunc a function to open a URL in a webview/BrowserView (handled by the client)
- * @param domParser a dom-parser DOMParser
  * @returns a list of chapters for the series, populated with fields from the content source
  */
 export interface GetChaptersFunc {
-  (
-    sourceType: SeriesSourceType,
-    id: string,
-    fetchFn: (
-      url: RequestInfo,
-      init?: RequestInit | undefined
-    ) => Promise<Response>,
-    webviewFunc: (url: string) => Promise<string>,
-    domParser: DOMParser
-  ): Promise<Chapter[]>;
+  (sourceType: SeriesSourceType, id: string): Promise<Chapter[]>;
 }
 
 /**
@@ -59,22 +35,13 @@ export interface GetChaptersFunc {
  * @param sourceType the source type of the series
  * @param seriesSourceId
  * @param chapterSourceId
- * @param fetchFn a fetch function, i.e. from node-fetch
- * @param webviewFunc a function to open a URL in a webview/BrowserView (handled by the client)
- * @param domParser a dom-parser DOMParser
  * @returns the PageRequesterData for passing to any GetPageUrlsFunc call for the chapter
  */
 export interface GetPageRequesterDataFunc {
   (
     sourceType: SeriesSourceType,
     seriesSourceId: string,
-    chapterSourceId: string,
-    fetchFn: (
-      url: RequestInfo,
-      init?: RequestInit | undefined
-    ) => Promise<Response>,
-    webviewFunc: (url: string) => Promise<string>,
-    domParser: DOMParser
+    chapterSourceId: string
   ): Promise<PageRequesterData>;
 }
 
@@ -113,44 +80,34 @@ export interface GetPageDataFunc {
  * @param text the user's search content, with any entered search params removed
  * @param params a map of user-specified parameters for searching. These are currently entered in
  * the form "key:value" like "author:oda" but this is not currently well-defined.
- * @param fetchFn a fetch function, i.e. from node-fetch
- * @param webviewFunc a function to open a URL in a webview/BrowserView (handled by the client)
- * @param domParser a dom-parser DOMParser
  * @returns a list of series found from the content source, with fields set as available
  */
 export interface GetSearchFunc {
-  (
-    text: string,
-    params: { [key: string]: string },
-    fetchFn: (
-      url: RequestInfo,
-      init?: RequestInit | undefined
-    ) => Promise<Response>,
-    webviewFunc: (url: string) => Promise<string>,
-    domParser: DOMParser
-  ): Promise<Series[]>;
+  (text: string, params: { [key: string]: string }): Promise<Series[]>;
 }
 
 /**
  * Get the directory for the content source (often equivalent to an empty search).
  *
- * @param fetchFn a fetch function, i.e. from node-fetch
- * @param webviewFunc a function to open a URL in a webview/BrowserView (handled by the client)
- * @param domParser a dom-parser DOMParser
  * @returns a list of series found from the content source, with fields set as available
  */
 export interface GetDirectoryFunc {
-  (
-    fetchFn: (
-      url: RequestInfo,
-      init?: RequestInit | undefined
-    ) => Promise<Response>,
-    webviewFunc: (url: string) => Promise<string>,
-    domParser: DOMParser
-  ): Promise<Series[]>;
+  (): Promise<Series[]>;
+}
+
+export interface FetchFunc {
+  (url: RequestInfo, init?: RequestInit | undefined): Promise<Response>;
+}
+
+export interface WebviewFunc {
+  (url: string): Promise<string>;
 }
 
 export interface ExtensionClientInterface {
+  fetchFn: FetchFunc;
+  webviewFn: WebviewFunc;
+  domParser: DOMParser;
+
   getMetadata: () => ExtensionMetadata;
   getSeries: GetSeriesFunc;
   getChapters: GetChaptersFunc;
@@ -159,4 +116,31 @@ export interface ExtensionClientInterface {
   getPageData: GetPageDataFunc;
   getSearch: GetSearchFunc;
   getDirectory: GetDirectoryFunc;
+}
+
+export abstract class ExtensionClientAbstract
+  implements ExtensionClientInterface
+{
+  fetchFn: FetchFunc;
+  webviewFn: WebviewFunc;
+  domParser: DOMParser;
+
+  constructor(
+    fetchFn: FetchFunc,
+    webviewFn: WebviewFunc,
+    domParser: DOMParser
+  ) {
+    this.fetchFn = fetchFn;
+    this.webviewFn = webviewFn;
+    this.domParser = domParser;
+  }
+
+  getMetadata!: () => ExtensionMetadata;
+  getSeries!: GetSeriesFunc;
+  getChapters!: GetChaptersFunc;
+  getPageRequesterData!: GetPageRequesterDataFunc;
+  getPageUrls!: GetPageUrlsFunc;
+  getPageData!: GetPageDataFunc;
+  getSearch!: GetSearchFunc;
+  getDirectory!: GetDirectoryFunc;
 }
