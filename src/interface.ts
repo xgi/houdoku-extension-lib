@@ -95,6 +95,27 @@ export interface GetDirectoryFunc {
   (): Promise<Series[]>;
 }
 
+/**
+ * Get the current settings for the extension.
+ *
+ * @returns a map of settings for the extension (with default/initial values already set)
+ */
+export interface GetSettingsFunc {
+  (): { [key: string]: any };
+}
+
+/**
+ * Set the settings for the extension.
+ *
+ * Use GetSettingsFunc to see available fields and their types.
+ *
+ * @param settings a map of settings for the extension
+ * @returns a list of series found from the content source, with fields set as available
+ */
+export interface SetSettingsFunc {
+  (settings: { [key: string]: any }): void;
+}
+
 export interface FetchFunc {
   (url: RequestInfo, init?: RequestInit | undefined): Promise<Response>;
 }
@@ -116,6 +137,8 @@ export interface ExtensionClientInterface {
   getPageData: GetPageDataFunc;
   getSearch: GetSearchFunc;
   getDirectory: GetDirectoryFunc;
+  getSettings: GetSettingsFunc;
+  setSettings: SetSettingsFunc;
 }
 
 export abstract class ExtensionClientAbstract
@@ -143,4 +166,6 @@ export abstract class ExtensionClientAbstract
   getPageData!: GetPageDataFunc;
   getSearch!: GetSearchFunc;
   getDirectory!: GetDirectoryFunc;
+  getSettings!: GetSettingsFunc;
+  setSettings!: SetSettingsFunc;
 }

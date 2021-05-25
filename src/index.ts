@@ -40,6 +40,8 @@ export {
   GetPageDataFunc,
   GetSearchFunc,
   GetDirectoryFunc,
+  SetSettingsFunc,
+  GetSettingsFunc,
   FetchFunc,
   WebviewFunc,
 } from "./interface";
