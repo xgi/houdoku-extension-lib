@@ -110,7 +110,6 @@ export interface GetSettingsFunc {
  * Use GetSettingsFunc to see available fields and their types.
  *
  * @param settings a map of settings for the extension
- * @returns a list of series found from the content source, with fields set as available
  */
 export interface SetSettingsFunc {
   (settings: { [key: string]: any }): void;
