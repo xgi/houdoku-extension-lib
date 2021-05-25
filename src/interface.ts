@@ -1,4 +1,4 @@
-import { Chapter, PageRequesterData, Series } from "./types";
+import { Chapter, ExtensionMetadata, PageRequesterData, Series } from "./types";
 import { Response, RequestInfo, RequestInit } from "node-fetch";
 import DOMParser from "dom-parser";
 import { SeriesSourceType } from "./enums";
@@ -148,4 +148,15 @@ export interface GetDirectoryFunc {
     webviewFunc: (url: string) => Promise<string>,
     domParser: DOMParser
   ): Promise<Series[]>;
+}
+
+export interface ExtensionClient {
+  getExtensionMetadata: () => ExtensionMetadata;
+  getSeries: GetSeriesFunc;
+  getChapters: GetChaptersFunc;
+  getPageRequesterData: GetPageRequesterDataFunc;
+  getPageUrls: GetPageUrlsFunc;
+  getPageData: GetPageDataFunc;
+  getSearch: GetSearchFunc;
+  getDirectory: GetDirectoryFunc;
 }

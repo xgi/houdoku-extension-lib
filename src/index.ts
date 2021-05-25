@@ -31,6 +31,7 @@ export {
 } from "./contentwarnings";
 
 export {
+  ExtensionClient,
   GetSeriesFunc,
   GetChaptersFunc,
   GetPageRequesterDataFunc,
