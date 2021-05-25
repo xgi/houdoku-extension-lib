@@ -150,8 +150,8 @@ export interface GetDirectoryFunc {
   ): Promise<Series[]>;
 }
 
-export interface ExtensionClient {
-  getExtensionMetadata: () => ExtensionMetadata;
+export interface ExtensionClientInterface {
+  getMetadata: () => ExtensionMetadata;
   getSeries: GetSeriesFunc;
   getChapters: GetChaptersFunc;
   getPageRequesterData: GetPageRequesterDataFunc;
