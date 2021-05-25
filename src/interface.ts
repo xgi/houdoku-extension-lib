@@ -129,6 +129,8 @@ export interface ExtensionClientInterface {
   webviewFn: WebviewFunc;
   domParser: DOMParser;
 
+  settings: { [key: string]: any };
+
   getMetadata: () => ExtensionMetadata;
   getSeries: GetSeriesFunc;
   getChapters: GetChaptersFunc;
@@ -147,6 +149,8 @@ export abstract class ExtensionClientAbstract
   fetchFn: FetchFunc;
   webviewFn: WebviewFunc;
   domParser: DOMParser;
+
+  settings: { [key: string]: any } = {};
 
   constructor(
     fetchFn: FetchFunc,
