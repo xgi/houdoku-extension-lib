@@ -18,6 +18,7 @@ export {
   DemographicKey,
   SeriesStatus,
   SeriesSourceType,
+  SettingType,
 } from "./enums";
 
 export { Languages } from "./languages";
@@ -40,6 +41,7 @@ export {
   GetPageDataFunc,
   GetSearchFunc,
   GetDirectoryFunc,
+  GetSettingTypesFunc,
   SetSettingsFunc,
   GetSettingsFunc,
   FetchFunc,

@@ -1,7 +1,7 @@
 import { Chapter, ExtensionMetadata, PageRequesterData, Series } from "./types";
 import { Response, RequestInfo, RequestInit } from "node-fetch";
 import DOMParser from "dom-parser";
-import { SeriesSourceType } from "./enums";
+import { SeriesSourceType, SettingType } from "./enums";
 
 /**
  * Get a series from the content source.
@@ -96,6 +96,15 @@ export interface GetDirectoryFunc {
 }
 
 /**
+ * Get the types for the extension's settings.
+ *
+ * @returns a map of settings for the extension and their SettingType
+ */
+export interface GetSettingTypesFunc {
+  (): { [key: string]: SettingType };
+}
+
+/**
  * Get the current settings for the extension.
  *
  * @returns a map of settings for the extension (with default/initial values already set)
@@ -138,6 +147,7 @@ export interface ExtensionClientInterface {
   getPageData: GetPageDataFunc;
   getSearch: GetSearchFunc;
   getDirectory: GetDirectoryFunc;
+  getSettingTypes: GetSettingTypesFunc;
   getSettings: GetSettingsFunc;
   setSettings: SetSettingsFunc;
 }
@@ -169,6 +179,7 @@ export abstract class ExtensionClientAbstract
   getPageData!: GetPageDataFunc;
   getSearch!: GetSearchFunc;
   getDirectory!: GetDirectoryFunc;
+  getSettingTypes!: GetSettingTypesFunc;
   getSettings!: GetSettingsFunc;
   setSettings!: SetSettingsFunc;
 }
