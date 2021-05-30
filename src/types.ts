@@ -14,6 +14,7 @@ export type ExtensionMetadata = {
   name: string;
   url: string;
   version: string;
+  translatedLanguage: LanguageKey | undefined;
   notice: string;
   noticeUrl: string;
   pageLoadMessage: string;
