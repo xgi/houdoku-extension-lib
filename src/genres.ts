@@ -48,6 +48,6 @@ export const genreKeysFromNames = (names: string[]) => {
     const matching: Genre | undefined = Object.values(Genres).find(
       (genre: Genre) => genre.name === name
     );
-    return matching === undefined ? -1 : matching.key;
+    return matching === undefined ? null : matching.key;
   });
 };

@@ -31,6 +31,6 @@ export const formatKeysFromNames = (names: string[]) => {
     const matching: Format | undefined = Object.values(Formats).find(
       (format: Format) => format.name === name
     );
-    return matching === undefined ? -1 : matching.key;
+    return matching === undefined ? null : matching.key;
   });
 };

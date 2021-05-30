@@ -21,6 +21,6 @@ export const demographicKeysFromNames = (names: string[]) => {
     const matching: Demographic | undefined = Object.values(Demographics).find(
       (demographic: Demographic) => demographic.name === name
     );
-    return matching === undefined ? -1 : matching.key;
+    return matching === undefined ? null : matching.key;
   });
 };
