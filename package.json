@@ -1,7 +1,7 @@
 {
   "name": "houdoku-extension-lib",
   "description": "Extension interface for Houdoku, a manga reader for the desktop",
-  "version": "1.4.13",
+  "version": "1.4.14",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
