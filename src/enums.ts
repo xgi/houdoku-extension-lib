@@ -1,4 +1,5 @@
 export enum LanguageKey {
+  MULTI = "MULTI",
   ARABIC = "ARABIC",
   BENGALI = "BENGALI",
   BULGARIAN = "BULGARIAN",

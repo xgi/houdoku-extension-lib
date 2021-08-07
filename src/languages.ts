@@ -3,6 +3,11 @@ import { Language } from "./types";
 
 // eslint-disable-next-line import/prefer-default-export
 export const Languages: { [key: string]: Language } = {
+  [LanguageKey.MULTI]: {
+    key: LanguageKey.MULTI,
+    name: "Multi",
+    flagCode: "",
+  },
   [LanguageKey.ARABIC]: {
     key: LanguageKey.ARABIC,
     name: "Arabic",
