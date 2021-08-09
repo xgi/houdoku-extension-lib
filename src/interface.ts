@@ -86,25 +86,32 @@ export interface GetPageDataFunc {
  * @param text the user's search content, with any entered search params removed
  * @param params a map of user-specified parameters for searching. These are currently entered in
  * the form "key:value" like "author:oda" but this is not currently well-defined.
- * @param offset optional page/count offset for the results
+ * @param pageOffset the page offset (from the client side)
+ * @param pageSize the page size (on the client side). Strictly speaking, extensions can retrieve
+ * more results than one client-side page; the client will collate them as necessary. Page size is
+ * passed here in case extensions need to use an item-based offset rather than a page-based one.
  * @returns SeriesListResponse with series that have fields set as available
  */
 export interface GetSearchFunc {
   (
     text: string,
     params: { [key: string]: string },
-    offset?: number
+    pageOffset: number,
+    pageSize: number
   ): Promise<SeriesListResponse>;
 }
 
 /**
  * Get the directory for the content source (often equivalent to an empty search).
  *
- * @param offset optional page/count offset for the results
+ * @param pageOffset the page offset (from the client side)
+ * @param pageSize the page size (on the client side). Strictly speaking, extensions can retrieve
+ * more results than one client-side page; the client will collate them as necessary. Page size is
+ * passed here in case extensions need to use an item-based offset rather than a page-based one.
  * @returns SeriesListResponse with series that have fields set as available
  */
 export interface GetDirectoryFunc {
-  (offset?: number): Promise<SeriesListResponse>;
+  (pageOffset: number, pageSize: number): Promise<SeriesListResponse>;
 }
 
 /**
