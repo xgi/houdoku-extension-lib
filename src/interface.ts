@@ -1,4 +1,10 @@
-import { Chapter, ExtensionMetadata, PageRequesterData, Series } from "./types";
+import {
+  Chapter,
+  ExtensionMetadata,
+  PageRequesterData,
+  Series,
+  SeriesListResponse,
+} from "./types";
 import { Response, RequestInfo, RequestInit } from "node-fetch";
 import DOMParser from "dom-parser";
 import { SeriesSourceType, SettingType } from "./enums";
@@ -80,19 +86,25 @@ export interface GetPageDataFunc {
  * @param text the user's search content, with any entered search params removed
  * @param params a map of user-specified parameters for searching. These are currently entered in
  * the form "key:value" like "author:oda" but this is not currently well-defined.
- * @returns a list of series found from the content source, with fields set as available
+ * @param offset optional page/count offset for the results
+ * @returns SeriesListResponse with series that have fields set as available
  */
 export interface GetSearchFunc {
-  (text: string, params: { [key: string]: string }): Promise<Series[]>;
+  (
+    text: string,
+    params: { [key: string]: string },
+    offset?: number
+  ): Promise<SeriesListResponse>;
 }
 
 /**
  * Get the directory for the content source (often equivalent to an empty search).
  *
- * @returns a list of series found from the content source, with fields set as available
+ * @param offset optional page/count offset for the results
+ * @returns SeriesListResponse with series that have fields set as available
  */
 export interface GetDirectoryFunc {
-  (): Promise<Series[]>;
+  (offset?: number): Promise<SeriesListResponse>;
 }
 
 /**

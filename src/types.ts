@@ -28,6 +28,11 @@ export type PageRequesterData = {
   pageFilenames: string[];
 };
 
+export type SeriesListResponse = {
+  seriesList: Series[];
+  nextOffset: number;
+};
+
 export type Series = {
   id?: number;
   extensionId: string;
@@ -48,7 +53,7 @@ export type Series = {
   numberUnread: number;
   remoteCoverUrl: string;
   userTags: string[];
-  trackerKeys?: { [trackerId: string]: string }
+  trackerKeys?: { [trackerId: string]: string };
 };
 
 export type Chapter = {
