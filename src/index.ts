@@ -7,6 +7,7 @@ export {
   Format,
   ContentWarning,
   Demographic,
+  SeriesListResponse,
 } from "./types";
 
 export {

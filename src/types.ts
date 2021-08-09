@@ -30,6 +30,7 @@ export type PageRequesterData = {
 
 export type SeriesListResponse = {
   seriesList: Series[];
+  hasMore: boolean;
   nextOffset: number;
 };
 
