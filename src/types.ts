@@ -32,7 +32,6 @@ export type SeriesListResponse = {
   seriesList: Series[];
   total: number;
   hasMore: boolean;
-  nextOffset: number;
 };
 
 export type Series = {
