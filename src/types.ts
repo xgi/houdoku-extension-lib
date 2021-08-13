@@ -28,6 +28,12 @@ export type PageRequesterData = {
   pageFilenames: string[];
 };
 
+export type WebviewResponse = {
+  text: string;
+  url: string;
+  title: string;
+};
+
 export type SeriesListResponse = {
   seriesList: Series[];
   hasMore: boolean;

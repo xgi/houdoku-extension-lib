@@ -4,6 +4,7 @@ import {
   PageRequesterData,
   Series,
   SeriesListResponse,
+  WebviewResponse,
 } from "./types";
 import { Response, RequestInfo, RequestInit } from "node-fetch";
 import DOMParser from "dom-parser";
@@ -141,7 +142,7 @@ export interface FetchFunc {
 }
 
 export interface WebviewFunc {
-  (url: string): Promise<string>;
+  (url: string): Promise<WebviewResponse>;
 }
 
 export interface ExtensionClientInterface {

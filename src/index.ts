@@ -8,6 +8,7 @@ export {
   ContentWarning,
   Demographic,
   SeriesListResponse,
+  WebviewResponse,
 } from "./types";
 
 export {
