@@ -40,7 +40,7 @@ export type SeriesListResponse = {
 };
 
 export type Series = {
-  id?: number;
+  id?: string;
   extensionId: string;
   sourceId: string;
   sourceType: SeriesSourceType;
@@ -63,8 +63,8 @@ export type Series = {
 };
 
 export type Chapter = {
-  id?: number;
-  seriesId?: number;
+  id?: string;
+  seriesId?: string;
   sourceId: string;
   title: string;
   chapterNumber: string;
