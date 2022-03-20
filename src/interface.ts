@@ -142,7 +142,25 @@ export interface FetchFunc {
 }
 
 export interface WebviewFunc {
-  (url: string): Promise<WebviewResponse>;
+  (
+    url: string,
+    options?: {
+      httpReferrer?: string;
+      userAgent?: string;
+      extraHeaders?: string;
+      postData?: (
+        | { type: "rawData"; bytes: Buffer }
+        | {
+            type: "file";
+            filePath: string;
+            offset: number;
+            length: number;
+            modificationTime: number;
+          }
+      )[];
+      baseURLForDataURL?: string;
+    }
+  ): Promise<WebviewResponse>;
 }
 
 export interface ExtensionClientInterface {
