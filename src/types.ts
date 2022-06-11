@@ -1,12 +1,8 @@
 import {
   SeriesSourceType,
-  GenreKey,
-  ThemeKey,
-  ContentWarningKey,
-  FormatKey,
+  SeriesTagKey,
   SeriesStatus,
   LanguageKey,
-  DemographicKey,
 } from "./enums";
 
 export type ExtensionMetadata = {
@@ -49,16 +45,11 @@ export type Series = {
   description: string;
   authors: string[];
   artists: string[];
-  genres: GenreKey[];
-  themes: ThemeKey[];
-  contentWarnings: ContentWarningKey[];
-  formats: FormatKey[];
-  demographic: DemographicKey;
+  tagKeys: SeriesTagKey[];
   status: SeriesStatus;
   originalLanguageKey: LanguageKey;
   numberUnread: number;
   remoteCoverUrl: string;
-  userTags: string[];
   trackerKeys?: { [trackerId: string]: string };
 };
 
@@ -81,27 +72,7 @@ export type Language = {
   flagCode: string;
 };
 
-export type Genre = {
-  key: GenreKey;
-  name: string;
-};
-
-export type Theme = {
-  key: ThemeKey;
-  name: string;
-};
-
-export type Format = {
-  key: FormatKey;
-  name: string;
-};
-
-export type ContentWarning = {
-  key: ContentWarningKey;
-  name: string;
-};
-
-export type Demographic = {
-  key: DemographicKey;
+export type SeriesTag = {
+  key: SeriesTagKey;
   name: string;
 };

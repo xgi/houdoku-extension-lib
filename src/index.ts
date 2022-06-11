@@ -2,36 +2,21 @@ export {
   Series,
   Chapter,
   Language,
-  Genre,
-  Theme,
-  Format,
-  ContentWarning,
-  Demographic,
+  SeriesTag,
   SeriesListResponse,
   WebviewResponse,
 } from "./types";
 
 export {
   LanguageKey,
-  GenreKey,
-  ThemeKey,
-  FormatKey,
-  ContentWarningKey,
-  DemographicKey,
+  SeriesTagKey,
   SeriesStatus,
   SeriesSourceType,
   SettingType,
 } from "./enums";
 
 export { Languages } from "./languages";
-export { Demographics, demographicKeysFromNames } from "./demographics";
-export { Genres, genreKeysFromNames } from "./genres";
-export { Formats, formatKeysFromNames } from "./formats";
-export { Themes, themeKeysFromNames } from "./themes";
-export {
-  ContentWarnings,
-  contentWarningKeysFromNames,
-} from "./contentwarnings";
+export { SeriesTags, SeriesTagKeysFromNames } from "./tags";
 
 export {
   ExtensionClientAbstract,
