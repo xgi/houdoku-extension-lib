@@ -1,9 +1,4 @@
-import {
-  SeriesSourceType,
-  SeriesTagKey,
-  SeriesStatus,
-  LanguageKey,
-} from "./enums";
+import { SeriesSourceType, SeriesStatus, LanguageKey } from "./enums";
 
 export type ExtensionMetadata = {
   id: string;
@@ -45,7 +40,7 @@ export type Series = {
   description: string;
   authors: string[];
   artists: string[];
-  tagKeys: SeriesTagKey[];
+  tags: string[];
   status: SeriesStatus;
   originalLanguageKey: LanguageKey;
   numberUnread: number;
@@ -70,9 +65,4 @@ export type Language = {
   key: LanguageKey;
   name: string;
   flagCode: string;
-};
-
-export type SeriesTag = {
-  key: SeriesTagKey;
-  name: string;
 };

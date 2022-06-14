@@ -2,21 +2,18 @@ export {
   Series,
   Chapter,
   Language,
-  SeriesTag,
   SeriesListResponse,
   WebviewResponse,
 } from "./types";
 
 export {
   LanguageKey,
-  SeriesTagKey,
   SeriesStatus,
   SeriesSourceType,
   SettingType,
 } from "./enums";
 
 export { Languages } from "./languages";
-export { SeriesTags, SeriesTagKeysFromNames } from "./tags";
 
 export {
   ExtensionClientAbstract,
