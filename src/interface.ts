@@ -7,7 +7,6 @@ import {
   WebviewResponse,
 } from "./types";
 import { Response, RequestInfo, RequestInit } from "node-fetch";
-import DOMParser from "dom-parser";
 import { SeriesSourceType, SettingType } from "./enums";
 
 /**
@@ -91,11 +90,7 @@ export interface GetPageDataFunc {
  * @returns SeriesListResponse with series that have fields set as available
  */
 export interface GetSearchFunc {
-  (
-    text: string,
-    params: { [key: string]: string },
-    page: number
-  ): Promise<SeriesListResponse>;
+  (text: string, params: { [key: string]: string }, page: number): Promise<SeriesListResponse>;
 }
 
 /**
@@ -163,10 +158,24 @@ export interface WebviewFunc {
   ): Promise<WebviewResponse>;
 }
 
-export interface ExtensionClientInterface {
+export interface DocFunc {
+  (html?: string | Buffer): Document;
+}
+
+export class UtilFunctions {
   fetchFn: FetchFunc;
   webviewFn: WebviewFunc;
-  domParser: DOMParser;
+  docFn: DocFunc;
+
+  constructor(fetchFn: FetchFunc, webviewFn: WebviewFunc, docFn: DocFunc) {
+    this.fetchFn = fetchFn;
+    this.webviewFn = webviewFn;
+    this.docFn = docFn;
+  }
+}
+
+export interface ExtensionClientInterface {
+  utilFns: UtilFunctions;
 
   settings: { [key: string]: any };
 
@@ -183,23 +192,12 @@ export interface ExtensionClientInterface {
   setSettings: SetSettingsFunc;
 }
 
-export abstract class ExtensionClientAbstract
-  implements ExtensionClientInterface
-{
-  fetchFn: FetchFunc;
-  webviewFn: WebviewFunc;
-  domParser: DOMParser;
-
+export abstract class ExtensionClientAbstract implements ExtensionClientInterface {
+  utilFns: UtilFunctions;
   settings: { [key: string]: any } = {};
 
-  constructor(
-    fetchFn: FetchFunc,
-    webviewFn: WebviewFunc,
-    domParser: DOMParser
-  ) {
-    this.fetchFn = fetchFn;
-    this.webviewFn = webviewFn;
-    this.domParser = domParser;
+  constructor(utilFns: UtilFunctions) {
+    this.utilFns = utilFns;
   }
 
   getMetadata!: () => ExtensionMetadata;
