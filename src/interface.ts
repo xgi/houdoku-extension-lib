@@ -7,28 +7,26 @@ import {
   WebviewResponse,
 } from "./types";
 import { Response, RequestInfo, RequestInit } from "node-fetch";
-import { SeriesSourceType, SettingType } from "./enums";
+import { SettingType } from "./enums";
 
 /**
  * Get a series from the content source.
  *
- * @param sourceType the source type of the series
  * @param id the id of the series on the content source
  * @returns the series populated with fields from the content source, or undefined
  */
 export interface GetSeriesFunc {
-  (sourceType: SeriesSourceType, id: string): Promise<Series | undefined>;
+  (id: string): Promise<Series | undefined>;
 }
 
 /**
  * Request chapters for a series from the content source.
  *
- * @param sourceType the source type of the series
  * @param id the id of the series on the content source
  * @returns a list of chapters for the series, populated with fields from the content source
  */
 export interface GetChaptersFunc {
-  (sourceType: SeriesSourceType, id: string): Promise<Chapter[]>;
+  (id: string): Promise<Chapter[]>;
 }
 
 /**
@@ -38,14 +36,12 @@ export interface GetChaptersFunc {
  * URLs -- i.e. each chapter may be hosted on an arbitrary server, which can only be identified
  * after requesting the base URL. The PageRequesterData received is solely used for GetPageUrlsFunc.
  *
- * @param sourceType the source type of the series
  * @param seriesSourceId
  * @param chapterSourceId
  * @returns the PageRequesterData for passing to any GetPageUrlsFunc call for the chapter
  */
 export interface GetPageRequesterDataFunc {
   (
-    sourceType: SeriesSourceType,
     seriesSourceId: string,
     chapterSourceId: string
   ): Promise<PageRequesterData>;
@@ -69,15 +65,15 @@ export interface GetPageUrlsFunc {
 /**
  * Get data for a page.
  *
- * This method should return a value that can be put inside the src tag of an HTML <img>. In most
- * cases that can simply be the URL itself.
+ * The return value should either be a string to put inside the src tag of an HTML <img> (usually
+ * the URL itself), or an ArrayBuffer that can be made into a Blob.
  *
  * @param series the series this page belongs to
  * @param url the url for this page from GetPageUrlsFunc
- * @returns promise for the data for the page that can be put inside an <img> src
+ * @returns promise for the data as described above
  */
 export interface GetPageDataFunc {
-  (series: Series, url: string): Promise<string>;
+  (series: Series, url: string): Promise<string | ArrayBuffer>;
 }
 
 /**

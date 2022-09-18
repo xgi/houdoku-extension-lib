@@ -48,11 +48,6 @@ export enum SeriesStatus {
   CANCELLED = "Cancelled",
 }
 
-export enum SeriesSourceType {
-  STANDARD = "STANDARD",
-  ARCHIVE = "ARCHIVE",
-}
-
 export enum SettingType {
   STRING = "STRING",
   STRING_ARRAY = "STRING_ARRAY",

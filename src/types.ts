@@ -1,4 +1,4 @@
-import { SeriesSourceType, SeriesStatus, LanguageKey } from "./enums";
+import { SeriesStatus, LanguageKey } from "./enums";
 
 export type ExtensionMetadata = {
   id: string;
@@ -34,7 +34,6 @@ export type Series = {
   id?: string;
   extensionId: string;
   sourceId: string;
-  sourceType: SeriesSourceType;
   title: string;
   altTitles: string[];
   description: string;
