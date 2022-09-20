@@ -64,4 +64,5 @@ export type Language = {
   key: LanguageKey;
   name: string;
   flagCode: string;
+  iso639_1: string;
 };
