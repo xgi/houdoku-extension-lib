@@ -21,7 +21,7 @@ export {
   GetChaptersFunc,
   GetPageRequesterDataFunc,
   GetPageUrlsFunc,
-  GetPageDataFunc,
+  GetImageFunc,
   GetSearchFunc,
   GetDirectoryFunc,
   GetSettingTypesFunc,

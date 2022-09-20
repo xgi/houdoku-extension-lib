@@ -41,10 +41,7 @@ export interface GetChaptersFunc {
  * @returns the PageRequesterData for passing to any GetPageUrlsFunc call for the chapter
  */
 export interface GetPageRequesterDataFunc {
-  (
-    seriesSourceId: string,
-    chapterSourceId: string
-  ): Promise<PageRequesterData>;
+  (seriesSourceId: string, chapterSourceId: string): Promise<PageRequesterData>;
 }
 
 /**
@@ -56,23 +53,23 @@ export interface GetPageRequesterDataFunc {
  * within the archive that need to be extracted separately.
  *
  * @param pageRequesterData
- * @returns list of URLs that can be used to retrieve page data (using GetPageDataFunc)
+ * @returns list of URLs that can be used to retrieve page data (using GetImageFunc)
  */
 export interface GetPageUrlsFunc {
   (pageRequesterData: PageRequesterData): string[];
 }
 
 /**
- * Get data for a page.
+ * Get resolved data for an image.
  *
  * The return value should either be a string to put inside the src tag of an HTML <img> (usually
  * the URL itself), or an ArrayBuffer that can be made into a Blob.
  *
- * @param series the series this page belongs to
- * @param url the url for this page from GetPageUrlsFunc
+ * @param series the series the image belongs to
+ * @param url the url for this page, e.g. from GetPageUrlsFunc or Series.remoteCoverUrl
  * @returns promise for the data as described above
  */
-export interface GetPageDataFunc {
+export interface GetImageFunc {
   (series: Series, url: string): Promise<string | ArrayBuffer>;
 }
 
@@ -180,7 +177,7 @@ export interface ExtensionClientInterface {
   getChapters: GetChaptersFunc;
   getPageRequesterData: GetPageRequesterDataFunc;
   getPageUrls: GetPageUrlsFunc;
-  getPageData: GetPageDataFunc;
+  getImage: GetImageFunc;
   getSearch: GetSearchFunc;
   getDirectory: GetDirectoryFunc;
   getSettingTypes: GetSettingTypesFunc;
@@ -201,7 +198,7 @@ export abstract class ExtensionClientAbstract implements ExtensionClientInterfac
   getChapters!: GetChaptersFunc;
   getPageRequesterData!: GetPageRequesterDataFunc;
   getPageUrls!: GetPageUrlsFunc;
-  getPageData!: GetPageDataFunc;
+  getImage!: GetImageFunc;
   getSearch!: GetSearchFunc;
   getDirectory!: GetDirectoryFunc;
   getSettingTypes!: GetSettingTypesFunc;
