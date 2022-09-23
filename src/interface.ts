@@ -1,6 +1,7 @@
 import {
   Chapter,
   ExtensionMetadata,
+  FilterValues,
   PageRequesterData,
   Series,
   SeriesListResponse,
@@ -8,6 +9,7 @@ import {
 } from "./types";
 import { Response, RequestInfo, RequestInit } from "node-fetch";
 import { SettingType } from "./enums";
+import { FilterOption } from "./filters";
 
 /**
  * Get a series from the content source.
@@ -83,7 +85,7 @@ export interface GetImageFunc {
  * @returns SeriesListResponse with series that have fields set as available
  */
 export interface GetSearchFunc {
-  (text: string, params: { [key: string]: string }, page: number): Promise<SeriesListResponse>;
+  (text: string, page: number, filterValues: FilterValues): Promise<SeriesListResponse>;
 }
 
 /**
@@ -93,7 +95,7 @@ export interface GetSearchFunc {
  * @returns SeriesListResponse with series that have fields set as available
  */
 export interface GetDirectoryFunc {
-  (page: number): Promise<SeriesListResponse>;
+  (page: number, filterValues: FilterValues): Promise<SeriesListResponse>;
 }
 
 /**
@@ -123,6 +125,15 @@ export interface GetSettingsFunc {
  */
 export interface SetSettingsFunc {
   (settings: { [key: string]: any }): void;
+}
+
+/**
+ * Get the extension's filter options.
+ *
+ * @returns List[FilterOption]
+ */
+export interface GetFilterOptionsFunc {
+  (): FilterOption[];
 }
 
 export interface FetchFunc {
@@ -183,6 +194,7 @@ export interface ExtensionClientInterface {
   getSettingTypes: GetSettingTypesFunc;
   getSettings: GetSettingsFunc;
   setSettings: SetSettingsFunc;
+  getFilterOptions: GetFilterOptionsFunc;
 }
 
 export abstract class ExtensionClientAbstract implements ExtensionClientInterface {
@@ -204,4 +216,5 @@ export abstract class ExtensionClientAbstract implements ExtensionClientInterfac
   getSettingTypes!: GetSettingTypesFunc;
   getSettings!: GetSettingsFunc;
   setSettings!: SetSettingsFunc;
+  getFilterOptions!: GetFilterOptionsFunc;
 }

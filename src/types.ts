@@ -66,3 +66,5 @@ export type Language = {
   flagCode: string;
   iso639_1: string;
 };
+
+export type FilterValues = { [id: string]: unknown };
