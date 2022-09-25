@@ -1,9 +1,15 @@
+import { SortDirection, TriState } from "./enums";
+
 export enum FilterOptionType {
-  Checkbox = "checkbox",
-  Select = "select",
-  Input = "input",
   Header = "header",
   Separator = "separator",
+  Checkbox = "checkbox",
+  TriStateCheckbox = "tristatecheckbox",
+  Select = "select",
+  Input = "input",
+  MultiToggle = "multitoggle",
+  Sort = "sort",
+  Cycle = "cycle",
 }
 
 export interface FilterOption {
@@ -30,6 +36,10 @@ export class FilterCheckbox extends FilterOptionAbstract {
   kind = FilterOptionType.Checkbox;
 }
 
+export class FilterTriStateCheckbox extends FilterOptionAbstract {
+  kind = FilterOptionType.TriStateCheckbox;
+}
+
 export class FilterSelect extends FilterOptionAbstract {
   kind = FilterOptionType.Select;
   options: { label: string; value: string }[] = [];
@@ -46,6 +56,50 @@ export class FilterInput extends FilterOptionAbstract {
 
   withPlaceholder(placeholder: string): FilterInput {
     this.placeholder = placeholder;
+    return this;
+  }
+}
+
+export type MultiToggleValues = { [key: string]: TriState };
+export class FilterMultiToggle extends FilterOptionAbstract {
+  kind = FilterOptionType.MultiToggle;
+  fields: { key: string; label: string }[] = [];
+  isTriState: boolean = false;
+
+  withFields(fields: { key: string; label: string }[]) {
+    this.fields = fields;
+    return this;
+  }
+
+  withIsTriState(isTriState: boolean) {
+    this.isTriState = isTriState;
+    return this;
+  }
+}
+
+export type FilterSortValue = { key: string; direction: SortDirection };
+export class FilterSort extends FilterOptionAbstract {
+  kind = FilterOptionType.Sort;
+  fields?: { key: string; label: string }[];
+  supportsBothDirections: boolean = false;
+
+  withFields(fields: { key: string; label: string }[]) {
+    this.fields = fields;
+    return this;
+  }
+
+  withSupportsBothDirections(supportsBothDirections: boolean) {
+    this.supportsBothDirections = supportsBothDirections;
+    return this;
+  }
+}
+
+export class FilterCycle extends FilterOptionAbstract {
+  kind = FilterOptionType.Cycle;
+  options: { label: string; value: string }[] = [];
+
+  withOptions(options: { label: string; value: string }[]): FilterCycle {
+    this.options = options;
     return this;
   }
 }

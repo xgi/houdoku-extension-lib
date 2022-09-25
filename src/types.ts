@@ -45,6 +45,7 @@ export type Series = {
   numberUnread: number;
   remoteCoverUrl: string;
   trackerKeys?: { [trackerId: string]: string };
+  categories?: string[];
 };
 
 export type Chapter = {

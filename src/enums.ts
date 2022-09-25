@@ -58,3 +58,14 @@ export enum SettingType {
   LANGUAGE_KEY = "LANGUAGE_KEY",
   LANGUAGE_KEY_ARRAY = "LANGUAGE_KEY_ARRAY",
 }
+
+export enum TriState {
+  IGNORE = 0,
+  INCLUDE = 1,
+  EXCLUDE = 2,
+}
+
+export enum SortDirection {
+  ASCENDING = 0,
+  DESCENDING = 1,
+}
